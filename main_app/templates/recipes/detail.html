@@ -2,6 +2,14 @@
 
 {% block content %}
 
-<h1>**Insert Recipe Title Here**</h1>
+<h1>{{ recipe.name }}</h1>
+
+<div class="card">
+    <div class="card-content">
+        <p>Category: {{ recipe.category }}</p>
+        <a href="{{ recipe.link }}" target="_blank">Get cooking!</a>
+        <img src="{{ recipe.image }}" alt="Recipe Photo" height="200">
+    </div>
+</div>
 
 {% endblock %}

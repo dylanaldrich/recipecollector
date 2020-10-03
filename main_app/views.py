@@ -20,7 +20,7 @@ def recipe_new(request):
 def recipe_detail(request):
     recipe = Recipe.objects.get(id=recipe_id)
     context = {'recipe':recipe}
-    return render(request, 'recipes/detail.html')
+    return render(request, 'recipes/detail.html', context)
 
 def recipe_edit(request):
     recipe = Recipe.objects.get(id=recipe_id)
