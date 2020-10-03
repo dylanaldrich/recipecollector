@@ -17,12 +17,12 @@ def recipes_index(request):
 def recipe_new(request):
     return render(request, 'recipes/new.html')
 
-def recipe_detail(request):
+def recipe_detail(request, recipe_id):
     recipe = Recipe.objects.get(id=recipe_id)
     context = {'recipe':recipe}
     return render(request, 'recipes/detail.html', context)
 
-def recipe_edit(request):
+def recipe_edit(request, recipe_id):
     recipe = Recipe.objects.get(id=recipe_id)
     context = {'recipe':recipe}
     return render(request, 'recipes/edit.html', context)
