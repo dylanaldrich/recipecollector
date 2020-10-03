@@ -3,19 +3,19 @@ from django.http import HttpResponse, JsonResponse
 
 # Create your views here.
 def home(request):
-    return HttpResponse('<h1>Recipe Collector Home</h1>')
+    return render(request, 'home.html')
 
 def about(request):
-    return HttpResponse('<h1>About Recipe Collector</h1>')
+    return render(request, 'about.html')
 
 def recipes_index(request):
-    return HttpResponse('<h1>Recipes Index</h1>')
+    return render(request, 'recipes/index.html')
 
 def recipe_new(request):
-    return HttpResponse('<h1>New Recipe</h1>')
+    return render(request, 'recipes/new.html')
 
 def recipe_detail(request):
-    return HttpResponse('<h1>Recipe Details</h1>')
+    return render(request, 'recipes/detail.html')
 
 def recipe_edit(request):
     return HttpResponse('<h1>Edit a Recipe</h1>')
