@@ -9,7 +9,7 @@
 <div class="row">
     <!-- List of chapters in selected book -->
     <div class="col s9">
-        {% for chapter in chapters %}
+        {% for chapter in book.chapter_set.all %}
             <div class="card">
                 <a href="{% url 'chapter_detail' chapter.id %}">
                     <div class="card-content">
@@ -23,7 +23,7 @@
     
     <!-- Add a chapter form -->
     <div class="col s3">
-        <form action="" method="post">
+        <form action="{% url 'chapter_add' book.id %}" method="POST">
             {% csrf_token %}
             {{ chapter_form.as_p }}
             <input type="submit" value="Add Chapter" class='btn' />
