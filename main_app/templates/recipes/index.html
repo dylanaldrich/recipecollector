@@ -2,18 +2,43 @@
 
 {% block content %}
 
-<h1>Recipe List</h1>
+<h1>All Recipes</h1>
 
-{% for recipe in recipes %}
-    <div class="card">
-        <a href="{% url 'recipe_detail' recipe.id %}">
-            <div class="card-content">
-                <span class="card-title">{{ recipe.name }}</span>
-                <p>Category: {{ recipe.category }}</p>
-                <img src="{{ recipe.image }}" alt="Recipe Photo" height="200">
+<div class="row">    
+    <!-- List of All Recipe -->
+    <div class="col s9">
+        {% for recipe in recipes %}
+            <div class="card">
+                <a href="{% url 'recipe_detail' recipe.id %}">
+                    <div class="card-content">
+                        <span class="card-title">{{ recipe.name }}</span>
+                        <p>Source: {{ recipe.source }}</p>
+                        <p><a href="{{ recipe.link }}" target="_blank">Get cooking!</a></p>
+                        {% if recipe.notes.length > 0 %}
+                            <p>Notes: {{ recipe.notes }}</p>
+                        {% else %}
+                            <p>No notes available.</p>
+                        {% endif %}
+                        <img src="{{ recipe.image }}" alt="Recipe Photo" height="200">
+                    </div>
+                </a>
+
+                <div class="card-action">
+                    <a href="{% url 'recipe_edit' recipe.id %}" class='btn blue'>Edit</a>
+                    <a href="{% url 'recipe_delete' recipe.id %}" class='btn blue'>Delete</a>
+                </div>
             </div>
-        </a>
+        {% endfor %}
     </div>
-{% endfor %}
+
+    <!-- Add a recipe form -->
+    <div class="col s3">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ recipe_form.as_p }}
+            <input type="submit" value="Add Recipe" class='btn' />
+        </form>
+    </div>
+</div>
 
 {% endblock %}

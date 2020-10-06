@@ -19,6 +19,7 @@ class Chapter(models.Model):
 
 class Recipe(models.Model):
     name = models.CharField(max_length=150)
+    source = models.CharField(max_length=150)
     link = models.URLField(max_length=500)
     image = models.URLField(max_length=500)
     notes = models.TextField(max_length=500)

@@ -2,6 +2,12 @@
 
 {% block content %}
 
-<h1>Edit: **Insert Chapter Name Here**</h1>
+<h1>Edit {{ chapter.name }}</h1>
+
+<form action="{% url 'chapter_edit' chapter.id %}" method="POST">
+    {% csrf_token %}
+    {{ chapter_form.as_p }}
+    <input class='btn' type="submit" value="Update {{ chapter.name }}">
+</form>
 
 {% endblock %}

@@ -2,6 +2,12 @@
 
 {% block content %}
 
-<h1>Edit: **Insert Recipe Name Here**</h1>
+<h1>Edit: {{ recipe.name }}</h1>
+
+<form action="{% url 'recipe_edit' recipe.id %}" method="POST">
+    {% csrf_token %}
+    {{ recipe_form.as_p }}
+    <input class='btn' type="submit" value="Update {{ recipe.name }}">
+</form>
 
 {% endblock %}

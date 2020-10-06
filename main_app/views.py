@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-from .models import Recipe
+from .models import Book, Chapter, Recipe
 
 # Create your views here.
 def home(request): # this will become login page
@@ -16,7 +16,7 @@ def books_index(request):
     context = {'books':books}
     return render(request, 'books/index.html', context)
 
-def book_detail(request, book_id):
+def book_detail(request, book_id): # this serves as chapters index of a given book
     book = Book.objects.get(id=book_id)
     context = {'book':book}
     return render(request, 'books/detail.html', context)
@@ -28,7 +28,7 @@ def book_edit(request, book_id):
 
 
 # Chapters routes
-def chapter_detail(request, chapter_id):
+def chapter_detail(request, chapter_id): #this serves as recipes index of a given chapter
     chapter = Chapter.objects.get(id=chapter_id)
     context = {'chapter':chapter}
     return render(request, 'chapters/detail.html', context)
@@ -40,7 +40,7 @@ def chapter_edit(request, chapter_id):
 
 
 # Recipes routes
-def recipes_index(request):
+def recipes_index(request): # this lists ALL recipes of current user
     recipes = Recipe.objects.all()
     context = {'recipes':recipes}
     return render(request, 'recipes/index.html', context)

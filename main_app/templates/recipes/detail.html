@@ -6,9 +6,19 @@
 
 <div class="card">
     <div class="card-content">
-        <p>Category: {{ recipe.category }}</p>
-        <a href="{{ recipe.link }}" target="_blank">Get cooking!</a>
+        <p class="card-title">Source: {{ recipe.source }}</p>
+        <p><a href="{{ recipe.link }}" target="_blank">Get cooking!</a></p>
+        {% if recipe.notes.length > 0 %}
+            <p>Notes: {{ recipe.notes }}</p>
+        {% else %}
+            <p>No notes available.</p>
+        {% endif %}
         <img src="{{ recipe.image }}" alt="Recipe Photo" height="200">
+    </div>
+
+    <div class="card-action">
+        <a href="{% url 'recipe_edit' recipe.id %}" class='btn blue'>Edit</a>
+        <a href="{% url 'recipe_delete' recipe.id %}" class='btn blue'>Delete</a>
     </div>
 </div>
 
