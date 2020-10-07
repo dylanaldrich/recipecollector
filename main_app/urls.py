@@ -16,12 +16,11 @@ urlpatterns = [
     path('chapters/<int:chapter_id>/', views.chapter_detail, name='chapter_detail'), # this lists recipes of given chapter
     path('chapters/<int:chapter_id>/edit/', views.chapter_edit, name='chapter_edit'),
     path('chapters/<int:chapter_id>/delete/', views.chapter_delete, name='chapter_delete'),
-    
+    path('chapters/<int:chapter_id>/recipe_add/', views.recipe_add, name='recipe_add'),
 
     # Recipes URLs
     path('recipes/', views.recipes_index, name='recipes_index'), # this lists all recipes of a given user
     path('recipes/<int:recipe_id>/', views.recipe_detail, name='recipe_detail'),
-    path('recipes/<int:recipe_id>/add/', views.recipe_add, name='recipe_add'),
     path('recipes/<int:recipe_id>/edit/', views.recipe_edit, name='recipe_edit'),
     path('recipes/<int:recipe_id>/delete/', views.recipe_delete, name='recipe_delete'),
 ]

@@ -58,7 +58,9 @@ def book_delete(request, book_id):
 # show
 def chapter_detail(request, chapter_id): #this serves as recipes index of a given chapter
     chapter = Chapter.objects.get(id=chapter_id)
-    context = {'chapter':chapter}
+    recipe_form = Recipe_Form()
+    context = {'chapter':chapter, 'recipe_form':recipe_form}
+    print("chapter.recipes", chapter.recipes)
     return render(request, 'chapters/detail.html', context)
 
 # create
@@ -98,13 +100,13 @@ def recipe_edit(request, recipe_id):
     context = {'recipe':recipe}
     return render(request, 'recipes/edit.html', context)
 
-def recipe_add(request, book_id):
-    recipe_form = Book_Form(request.POST)
+def recipe_add(request, chapter_id):
+    recipe_form = Recipe_Form(request.POST)
     if recipe_form.is_valid():
-        new_recipe = feeding_form.save(commit=False)
-        new_recipe.book_id = book_id
+        new_recipe = recipe_form.save(commit=False)
+        new_recipe.chapter_id = chapter_id
         new_recipe.save()
-    return redirect('detail', book_id=book_id)
+    return redirect('chapter_detail', chapter_id=chapter_id)
 
 def recipe_delete(request, recipe_id):
     Recipe.objects.get(id=recipe_id).delete()
