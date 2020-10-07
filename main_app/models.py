@@ -16,7 +16,7 @@ class Recipe(models.Model):
 
 class Book(models.Model):
     name = models.CharField(max_length=40)
-    # recipes = models.ManyToManyField(Recipe)
+    recipes = models.ManyToManyField(Recipe)
 
     def __str__(self):
         return self.name
