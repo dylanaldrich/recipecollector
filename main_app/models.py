@@ -29,7 +29,7 @@ class Chapter(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=250)
     recipes = models.ManyToManyField(Recipe)
-    # book = models.ForeignKey(Book, default=1, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, default=1, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
