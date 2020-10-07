@@ -98,10 +98,15 @@ def recipe_edit(request, recipe_id):
     context = {'recipe':recipe}
     return render(request, 'recipes/edit.html', context)
 
-def chapter_add(request, book_id):
-    chapter_form = Chapter_Form(request.POST)
-    if chapter_form.is_valid():
-        new_chapter = feeding_form.save(commit=False)
-        new_chapter.book_id = book_id
-        new_chapter.save()
+def recipe_add(request, book_id):
+    recipe_form = Book_Form(request.POST)
+    if recipe_form.is_valid():
+        new_recipe = feeding_form.save(commit=False)
+        new_recipe.book_id = book_id
+        new_recipe.save()
     return redirect('detail', book_id=book_id)
+
+def recipe_delete(request, recipe_id):
+    Recipe.objects.get(id=recipe_id).delete()
+    # TODO get this to redirect back to the parent book's detail page
+    return redirect('recipes_index')
