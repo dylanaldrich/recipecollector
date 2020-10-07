@@ -56,7 +56,7 @@ def book_delete(request, book_id):
 
 # SECTION Chapters routes
 # show
-def chapter_detail(request, chapter_id): #this serves as recipes index of a given chapter
+def chapter_detail(request, chapter_id):
     chapter = Chapter.objects.get(id=chapter_id)
     recipe_form = Recipe_Form()
     context = {'chapter':chapter, 'recipe_form':recipe_form}
