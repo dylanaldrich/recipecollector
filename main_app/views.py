@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from .models import Book, Chapter, Recipe
 from .forms import Book_Form, Chapter_Form, Recipe_Form
@@ -22,7 +22,7 @@ def books_index(request):
             return redirect('books_index')
     books = Book.objects.all()
     book_form = Book_Form()
-    context = {'books':books}
+    context = {'books':books, 'book_form':book_form}
     return render(request, 'books/index.html', context)
 
 # show
@@ -65,10 +65,10 @@ def chapter_detail(request, chapter_id): #this serves as recipes index of a give
 def chapter_add(request, book_id):
     chapter_form = Chapter_Form(request.POST)
     if chapter_form.is_valid():
-        new_chapter = feeding_form.save(commit=False)
+        new_chapter = chapter_form.save(commit=False)
         new_chapter.book_id = book_id
         new_chapter.save()
-    return redirect('detail', book_id=book_id)
+    return redirect('book_detail', book_id=book_id)
 
 # edit && update
 def chapter_edit(request, chapter_id):

@@ -10,10 +10,10 @@ urlpatterns = [
     path('books/<int:book_id>/', views.book_detail, name='book_detail'), # this lists chapters of a given book
     path('books/<int:book_id>/edit/', views.book_edit, name='book_edit'),
     path('books/<int:book_id>/delete/', views.book_delete, name='book_delete'),
+    path('books/<int:book_id>/chapter_add/', views.chapter_add, name='chapter_add'),
 
     # Chapter URLs 
     path('chapters/<int:chapter_id>/', views.chapter_detail, name='chapter_detail'), # this lists recipes of given chapter
-    path('chapters/<int:chapter_id>/add/', views.chapter_add, name='chapter_add'),
     path('chapters/<int:chapter_id>/edit/', views.chapter_edit, name='chapter_edit'),
     path('chapters/<int:chapter_id>/delete/', views.chapter_delete, name='chapter_delete'),
     
